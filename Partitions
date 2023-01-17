@@ -1,0 +1,60 @@
+package assignmentfinal;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+/**
+ *
+ * @author USER
+ */
+class CalculateThePartition {
+    
+    private String name;
+    private int count=0;
+    
+    
+    public CalculateThePartition(String name){
+        this.name=name;
+    }
+    
+     public String getName(){
+        return name;
+     }
+    
+    public void calculatePartition(){
+        
+        try {
+            // TODO code application logic here
+
+            Scanner scan = new Scanner(new FileInputStream("C:\\Users\\USER\\OneDrive - Universiti Malaya\\Desktop\\DEGREE SALIHIN\\SEM 1\\WIX1002\\AssignmentFinal\\extracted_log.txt"));
+            
+            
+            while(scan.hasNextLine()){
+                
+                String line = scan.nextLine();
+                
+                  Pattern part = Pattern.compile("Partition="+getName());
+                 Matcher match = part.matcher(line);
+                 
+                 if(match.find()){
+                    // System.out.println(line);
+                     count++;
+                 }
+                
+
+            }
+            scan.close();            
+             System.out.println(count);
+            }
+        catch (FileNotFoundException ex) {
+            System.out.println("Error ");
+        }
+        
+       
+    }
+    }
